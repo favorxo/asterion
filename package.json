@@ -1,0 +1,22 @@
+{
+  "name": "asterion",
+  "version": "1.0.0",
+  "description": "uwu is better than owo",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/favorXo/asterion.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/favorXo/asterion/issues"
+  },
+  "homepage": "https://github.com/favorXo/asterion#readme",
+  "dependencies": {
+    "dotenv": "^10.0.0"
+  }
+}
