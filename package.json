@@ -1,22 +1,16 @@
 {
   "name": "asterion",
   "version": "1.0.0",
-  "description": "uwu is better than owo",
   "main": "index.js",
+  "repository": "https://github.com/favorXo/asterion",
+  "author": "favorxo <favorxog@gmail.com>",
+  "license": "MIT",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon index.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/favorXo/asterion.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/favorXo/asterion/issues"
-  },
-  "homepage": "https://github.com/favorXo/asterion#readme",
   "dependencies": {
-    "dotenv": "^10.0.0"
+    "discord.js": "^13.2.0",
+    "dotenv": "^10.0.0",
+    "nodemon": "^2.0.14"
   }
 }
