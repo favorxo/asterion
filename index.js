@@ -1,20 +1,38 @@
-const { Client, Intents, Collection } = require('discord.js');
+const { Client, Intents } = require('discord.js');
 require('dotenv').config();
+const fs = require('fs');
+const logger = require('./utils/logger');
+const initCommands = require('./handlers/commands');
 
-const bot = new Client({
+const TOKEN = process.env.TOKEN;
+
+const client = new Client({
   intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES],
 });
 
-bot.on('ready', () => {
-  // Meta data of bot setup
-  console.log(`Logged in as ${bot.user.tag}!`);
-  bot.user.setActivity(`In Development`);
-  bot.user.setStatus('online');
+initCommands(client);
+
+client.on('ready', () => {
+  logger.log(`Logged in as ${client.user.tag}!`);
+  client.user.setActivity(`In Development`);
+  client.user.setStatus('online');
 });
 
-bot.on('messageCreate', (message) => {
-  if (message.author.bot) return;
-  message.reply('ye');
+client.on('interactionCreate', async (interaction) => {
+  if (!interaction.isCommand()) return;
+  
+  const command = client.commands.get(interaction.commandName);
+  
+  if (!command) return;
+  try {
+    await command.run(interaction);
+  } catch (error) {
+    console.error(error);
+    await interaction.reply({
+      content: 'There was an error while executing this command!',
+      ephemeral: true,
+    });
+  }
 });
 
-bot.login(process.env.TOKEN);
+client.login(TOKEN);
