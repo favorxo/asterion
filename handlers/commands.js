@@ -1,5 +1,5 @@
 const { readdirSync } = require('fs');
-const { Collection, Client } = require('discord.js');
+const { Collection } = require('discord.js');
 const { REST } = require('@discordjs/rest');
 const { Routes } = require('discord-api-types/v9');
 const logger = require('../utils/logger');
