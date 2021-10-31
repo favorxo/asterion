@@ -6,7 +6,7 @@ const { clientId, guildId } = require('../config.json');
 const logger = require('../utils/logger');
 const TOKEN = process.env.TOKEN;
 
-const deploy = (client) => {
+const initCommands = (client) => {
   client.commands = new Collection();
   const commonFolder = readdirSync('./commands');
   const commands = [];
@@ -28,4 +28,4 @@ const deploy = (client) => {
     .catch(logger.error);
 };
 
-module.exports = deploy;
+module.exports = initCommands;

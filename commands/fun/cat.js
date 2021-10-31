@@ -1,6 +1,8 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { MessageEmbed } = require('discord.js');
-const axios = require('axios');
+const { embedColor } = require('../../config.json');
+const get = require('../../utils/get');
+const { catUrl } = require('../../constants/endpoints.json');
 
 const command = new SlashCommandBuilder()
   .setName('cat')
@@ -11,32 +13,24 @@ command.addSubcommand((subcommand) =>
 );
 
 command.addSubcommand((subcommand) =>
-  subcommand.setName('gif').setDescription('Cat gif')
+  subcommand.setName('gif').setDescription('Cat gif (no api for gifs yet)')
 );
 
 const embed = (url, text, avatar) =>
   new MessageEmbed()
-    .setColor('#0099ff')
+    .setColor(embedColor)
     .setAuthor(text, avatar, url)
     .setImage(url);
 
-const getCatMedia = async (url) => {
-  try {
-    const res = await axios.get(url);
-    return res.data;
-  } catch (e) {
-    return e;
-  }
-};
 const run = async (interaction) => {
   const subcommand = interaction.options.getSubcommand();
   let media;
   if (subcommand === 'img') {
-    media = await getCatMedia('http://aws.random.cat/meow');
+    media = await get(catUrl);
   }
   // a lie, at least now
   if (subcommand === 'gif') {
-    media = await getCatMedia('http://aws.random.cat/meow');
+    media = await get(catUrl);
   }
   return interaction.reply({
     embeds: [embed(media.file, 'cute', interaction.user.avatarURL())],
