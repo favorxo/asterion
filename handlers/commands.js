@@ -1,5 +1,5 @@
 const { readdirSync } = require('fs');
-const { Collection } = require('discord.js');
+const { Collection, Client } = require('discord.js');
 const { REST } = require('@discordjs/rest');
 const { Routes } = require('discord-api-types/v9');
 const { clientId, guildId } = require('../config.json');
@@ -23,9 +23,15 @@ const initCommands = (client) => {
   const rest = new REST({ version: '9' }).setToken(TOKEN);
 
   rest
-    .put(Routes.applicationGuildCommands(clientId), { body: commands })
+    .put(
+      Routes.applicationGuildCommands(
+        process.env.CLIENT_ID,
+        process.env.GUILD_ID
+      ),
+      { body: commands }
+    )
     .then(() => logger.log('Successfully registered application commands.'))
     .catch(logger.error);
 };
-
+// https://discord.com/api/oauth2/authorize?client_id=903563541888528474&permissions=36507323456&scope=bot%20applications.commands
 module.exports = initCommands;
