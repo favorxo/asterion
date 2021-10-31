@@ -4,7 +4,7 @@ const command = new SlashCommandBuilder().setName('hurt').setDescription('Hurts 
 command.addStringOption((option) => option.setName('user').setDescription('The user you want to hurt').setRequired(true));
 
 const run = async (interaction) => {
-  await interaction.reply(`I PUNCH YOU IN THE FACE(test if glitch.com reupload it on git push), ${interaction.options.getString('user')}!`);
+  await interaction.reply(`I PUNCH YOU IN THE FACE(test if glitch.com reupload it on git push AGAIN), ${interaction.options.getString('user')}!`);
 }
 
 module.exports = {
