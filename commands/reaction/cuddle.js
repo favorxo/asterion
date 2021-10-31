@@ -1,7 +1,7 @@
 const reactionTemplate = require('../../utils/reactionTemplate');
 
 const options = {
-  commandName: 'cuddle', // command name and also endpoint
+  commandName: 'cuddle',
   commandDescription:
     'Are you also wondering why is there cuddle and hug at the same time?',
   requiredUserMention: true,

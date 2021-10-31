@@ -7,7 +7,7 @@ const command = new SlashCommandBuilder()
 
 const run = async (interaction) => {
   // checks if user has permission for that
-  if (!interaction.member.permissions.has(Permissions.FLAGS.MANAGE_MESSAGES))
+  if (!interaction.member.permissions.has(Permissions.FLAGS.MANAGE_CHANNELS))
     return;
 
   await interaction.channel.clone();

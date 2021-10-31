@@ -3,7 +3,8 @@ const { MessageEmbed } = require('discord.js');
 const { embedColor } = require('../../config.json');
 const get = require('../../utils/get');
 
-const catUrl = "http://aws.random.cat/meow"
+const catUrl = 'http://aws.random.cat/meow';
+
 const command = new SlashCommandBuilder()
   .setName('cat')
   .setDescription('Sends cat media');
