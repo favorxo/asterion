@@ -42,14 +42,14 @@ const run = async (interaction) => {
       errors: ['time'],
     });
     const reaction = collected.first();
-    console.log(reaction)
+    console.log(reaction);
     if (reaction.emoji.name === '🟢') {
       reaction.reply({ content: 'You reacted with a YES.', ephemeral: true });
     } else {
       reaction.reply({ content: 'You reacted with a NO.', ephemeral: true });
     }
   } catch (e) {
-    console.log(e)
+    console.log(e);
     message.reply({
       content: 'You reacted with neither YES, nor NO.',
       ephemeral: true,
