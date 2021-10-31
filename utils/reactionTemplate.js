@@ -1,7 +1,6 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { MessageEmbed } = require('discord.js');
 const get = require('./get');
-const { animeUrl } = require('../constants/endpoints');
 const { embedColor } = require('../config.json');
 
 const reactionTemplate = (props) => {
@@ -10,7 +9,10 @@ const reactionTemplate = (props) => {
     .setDescription(props.commandDescription);
 
   command.addUserOption((option) =>
-    option.setName('user').setDescription('Select a user').setRequired(props.requiredUserMention)
+    option
+      .setName('user')
+      .setDescription('Select a user')
+      .setRequired(props.requiredUserMention)
   );
 
   const embeded = (user1, user2, img) =>
@@ -20,7 +22,7 @@ const reactionTemplate = (props) => {
       .setImage(img);
 
   const run = async (interaction) => {
-    const data = await get(`${animeUrl}/${props.commandName}`);
+    const data = await get(props.animeUrl);
 
     interaction.reply({
       embeds: [
