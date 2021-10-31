@@ -23,7 +23,7 @@ const initCommands = (client) => {
   const rest = new REST({ version: '9' }).setToken(TOKEN);
 
   rest
-    .put(Routes.applicationGuildCommands(clientId, guildId), { body: commands })
+    .put(Routes.applicationGuildCommands(clientId), { body: commands })
     .then(() => logger.log('Successfully registered application commands.'))
     .catch(logger.error);
 };
