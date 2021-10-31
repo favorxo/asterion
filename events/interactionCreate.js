@@ -1,4 +1,4 @@
-const interactionHandler = async (interaction) => {
+const interactionCreate = async (interaction) => {
   if (!interaction.isCommand()) return;
 
   const command = interaction.client.commands.get(interaction.commandName);
@@ -16,7 +16,7 @@ const interactionHandler = async (interaction) => {
 };
 
 module.exports = {
-  name: 'interactionHandler',
+  name: 'interactionCreate',
   once: false,
-  run: interactionHandler,
+  run: interactionCreate,
 };

@@ -4,33 +4,29 @@ const get = require('./get');
 const { animeUrl } = require('../constants/endpoints');
 const { embedColor } = require('../config.json');
 
-const reactionTemplate = (
-  commandName,
-  commandDescription,
-  embededDescription
-) => {
+const reactionTemplate = (props) => {
   const command = new SlashCommandBuilder()
-    .setName(commandName)
-    .setDescription(commandDescription);
+    .setName(props.commandName)
+    .setDescription(props.commandDescription);
 
   command.addUserOption((option) =>
-    option.setName('user').setDescription('Select a user').setRequired(true)
+    option.setName('user').setDescription('Select a user').setRequired(props.requiredUserMention)
   );
 
   const embeded = (user1, user2, img) =>
     new MessageEmbed()
       .setColor(embedColor)
-      .setDescription(embededDescription(user1, user2))
+      .setDescription(props.embededDescription(user1, user2))
       .setImage(img);
 
   const run = async (interaction) => {
-    const data = await get(`${animeUrl}/${commandName}`);
+    const data = await get(`${animeUrl}/${props.commandName}`);
 
     interaction.reply({
       embeds: [
         embeded(
           interaction.user,
-          interaction.options.getUser('user'),
+          interaction.options.getUser('user') || null,
           data.url
         ),
       ],

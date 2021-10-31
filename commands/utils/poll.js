@@ -38,16 +38,18 @@ const run = async (interaction) => {
   try {
     const collected = await message.awaitReactions({
       filter,
-      time: 60000 * interaction.options.getInteger('minutes'),
+      time: 3000,
       errors: ['time'],
     });
     const reaction = collected.first();
+    console.log(reaction)
     if (reaction.emoji.name === '🟢') {
-      interaction.reply({ content: 'You reacted with a YES.', ephemeral: true });
+      reaction.reply({ content: 'You reacted with a YES.', ephemeral: true });
     } else {
-      interaction.reply({ content: 'You reacted with a NO.', ephemeral: true });
+      reaction.reply({ content: 'You reacted with a NO.', ephemeral: true });
     }
   } catch (e) {
+    console.log(e)
     message.reply({
       content: 'You reacted with neither YES, nor NO.',
       ephemeral: true,
