@@ -3,7 +3,6 @@ const { Collection } = require('discord.js');
 const { REST } = require('@discordjs/rest');
 const { Routes } = require('discord-api-types/v9');
 const logger = require('../utils/logger');
-const TOKEN = process.env.TOKEN;
 
 const initCommands = (client) => {
   client.commands = new Collection();
@@ -19,7 +18,7 @@ const initCommands = (client) => {
       commands.push(file.command.toJSON());
     }
   }
-  const rest = new REST({ version: '9' }).setToken(TOKEN);
+  const rest = new REST({ version: '9' }).setToken(process.env.TOKEN);
 
   rest
     .put(Routes.applicationCommands(process.env.CLIENT_ID), { body: commands })

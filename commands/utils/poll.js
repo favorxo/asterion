@@ -42,7 +42,7 @@ const run = async (interaction) => {
       errors: ['time'],
     });
     const reaction = collected.first();
-    console.log(reaction);
+    console.log(reaction);w
     if (reaction.emoji.name === '🟢') {
       reaction.reply({ content: 'You reacted with a YES.', ephemeral: true });
     } else {
